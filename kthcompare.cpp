@@ -7,14 +7,18 @@ int kthlargestele(vector<int> &arrl, int k) {
   if(arrl.size() < k) {
     return -1;
   }
-//using min heap for largest kth ele
+
+// Function to find the kth largest element in an array using min-heap
   priority_queue<int, vector<int>, greater<int>> pq(arrl.begin(), arrl.begin() + k);
   for( int i = k; i<arrl.size(); i++) {
+      // if the current element is more than the root of the heap
     if(arrl[i] > pq.top() ){
+      // replace root with the current element
       pq.pop();
       pq.push(arrl[i]);
     }
   }
+    // return the root of min-heap
   return pq.top(); 
 }
 
@@ -24,13 +28,17 @@ int kthsmalleseele(vector<int> &arrs, int k) {
     return -1;
   }
   //priority queue for creating max heap for kth smallest ele
+  // insert the first `k` array elements into the heap
   priority_queue<int, vector<int>> pq(arrs.begin(), arrs.begin() + k) ;
   for(int i = k; i< arrs.size(); i++) {
+      // if the current element is less than the root of the heap
     if(arrs[i] < pq.top() ) {
+       // replace root with the current element
       pq.pop();
       pq.push(arrs[i]);
     }
   }
+  // return the root of max-heap
   return pq.top();
 }
 
